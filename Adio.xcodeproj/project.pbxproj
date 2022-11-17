@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2850313C2926EB73000B8331 /* NowPlayingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2850313B2926EB73000B8331 /* NowPlayingView.swift */; };
 		286E78AE2925C98F00F206A9 /* AdioApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286E78AD2925C98F00F206A9 /* AdioApp.swift */; };
 		286E78B02925C98F00F206A9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286E78AF2925C98F00F206A9 /* ContentView.swift */; };
 		286E78B22925C99000F206A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 286E78B12925C99000F206A9 /* Assets.xcassets */; };
@@ -14,6 +15,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2850313B2926EB73000B8331 /* NowPlayingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingView.swift; sourceTree = "<group>"; };
 		286E78AA2925C98F00F206A9 /* Adio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Adio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		286E78AD2925C98F00F206A9 /* AdioApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdioApp.swift; sourceTree = "<group>"; };
 		286E78AF2925C98F00F206A9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -37,6 +39,7 @@
 			isa = PBXGroup;
 			children = (
 				286E78AF2925C98F00F206A9 /* ContentView.swift */,
+				2850313B2926EB73000B8331 /* NowPlayingView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -147,6 +150,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2850313C2926EB73000B8331 /* NowPlayingView.swift in Sources */,
 				286E78B02925C98F00F206A9 /* ContentView.swift in Sources */,
 				286E78AE2925C98F00F206A9 /* AdioApp.swift in Sources */,
 			);
