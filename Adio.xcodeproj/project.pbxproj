@@ -33,6 +33,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2850313A2926EAEC000B8331 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				286E78AF2925C98F00F206A9 /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		286E78A12925C98F00F206A9 = {
 			isa = PBXGroup;
 			children = (
@@ -52,8 +60,8 @@
 		286E78AC2925C98F00F206A9 /* Adio */ = {
 			isa = PBXGroup;
 			children = (
+				2850313A2926EAEC000B8331 /* Views */,
 				286E78AD2925C98F00F206A9 /* AdioApp.swift */,
-				286E78AF2925C98F00F206A9 /* ContentView.swift */,
 				286E78B12925C99000F206A9 /* Assets.xcassets */,
 				286E78B32925C99000F206A9 /* Adio.entitlements */,
 				286E78B42925C99000F206A9 /* Preview Content */,
