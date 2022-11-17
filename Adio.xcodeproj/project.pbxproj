@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2850313C2926EB73000B8331 /* NowPlayingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2850313B2926EB73000B8331 /* NowPlayingView.swift */; };
 		285031422926EEF0000B8331 /* Color+AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285031412926EEF0000B8331 /* Color+AppColors.swift */; };
+		285031442926F38F000B8331 /* Image+AverageColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285031432926F38F000B8331 /* Image+AverageColor.swift */; };
 		286E78AE2925C98F00F206A9 /* AdioApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286E78AD2925C98F00F206A9 /* AdioApp.swift */; };
 		286E78B02925C98F00F206A9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286E78AF2925C98F00F206A9 /* ContentView.swift */; };
 		286E78B22925C99000F206A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 286E78B12925C99000F206A9 /* Assets.xcassets */; };
@@ -18,6 +19,7 @@
 /* Begin PBXFileReference section */
 		2850313B2926EB73000B8331 /* NowPlayingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingView.swift; sourceTree = "<group>"; };
 		285031412926EEF0000B8331 /* Color+AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+AppColors.swift"; sourceTree = "<group>"; };
+		285031432926F38F000B8331 /* Image+AverageColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+AverageColor.swift"; sourceTree = "<group>"; };
 		286E78AA2925C98F00F206A9 /* Adio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Adio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		286E78AD2925C98F00F206A9 /* AdioApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdioApp.swift; sourceTree = "<group>"; };
 		286E78AF2925C98F00F206A9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -50,6 +52,7 @@
 			isa = PBXGroup;
 			children = (
 				285031412926EEF0000B8331 /* Color+AppColors.swift */,
+				285031432926F38F000B8331 /* Image+AverageColor.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -162,6 +165,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2850313C2926EB73000B8331 /* NowPlayingView.swift in Sources */,
+				285031442926F38F000B8331 /* Image+AverageColor.swift in Sources */,
 				285031422926EEF0000B8331 /* Color+AppColors.swift in Sources */,
 				286E78B02925C98F00F206A9 /* ContentView.swift in Sources */,
 				286E78AE2925C98F00F206A9 /* AdioApp.swift in Sources */,
