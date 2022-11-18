@@ -11,7 +11,7 @@ import SwiftUI
 struct AdioApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            Text("Coming soon.")
         }
     }
 }
