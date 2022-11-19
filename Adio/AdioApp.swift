@@ -16,6 +16,11 @@ struct AdioApp: App {
                     .tabItem {
                         Label("Now Playing", systemImage: "play.fill")
                     }
+                
+                RecentlyPlayedView()
+                    .tabItem {
+                        Label("Recently Played", systemImage: "clock.fill")
+                    }
             }
             .onAppear {
                 let appearance = UITabBarAppearance()
