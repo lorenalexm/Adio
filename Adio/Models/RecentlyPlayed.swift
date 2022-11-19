@@ -1,5 +1,5 @@
 //
-//  History.swift
+//  RecentlyPlayed.swift
 //  Adio
 //
 //  Created by Alex Loren on 11/18/22.
@@ -12,15 +12,15 @@
 
 import Foundation
 
-// MARK: - HistoryElement
-struct HistoryElement: Codable {
+// MARK: - RecentElement
+struct RecentElement: Codable {
     let shID: Int?
     let playedAt: Int?
     let duration: Int?
     let playlist: String?
     let streamer: String?
     let isRequest: Bool?
-    let song: HistoricSong?
+    let song: RecentSong?
     let listenersStart: Int?
     let listenersEnd: Int?
     let deltaTotal: Int?
@@ -41,8 +41,8 @@ struct HistoryElement: Codable {
     }
 }
 
-// MARK: - HistoricSong
-struct HistoricSong: Codable {
+// MARK: - RecentSong
+struct RecentSong: Codable {
     let id: String?
     let text: String?
     let artist: String?
@@ -68,4 +68,4 @@ struct HistoricSong: Codable {
     }
 }
 
-typealias History = [HistoryElement]
+typealias RecentlyPlayed = [RecentElement]
