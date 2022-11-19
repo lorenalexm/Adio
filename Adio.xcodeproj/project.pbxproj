@@ -15,6 +15,7 @@
 		286E78B22925C99000F206A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 286E78B12925C99000F206A9 /* Assets.xcassets */; };
 		286E78B62925C99000F206A9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 286E78B52925C99000F206A9 /* Preview Assets.xcassets */; };
 		28C1F63A2929861C0077E907 /* RecentlyPlayedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C1F6392929861C0077E907 /* RecentlyPlayedView.swift */; };
+		28C1F63D2929886B0077E907 /* RecentlyPlayedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C1F63C2929886B0077E907 /* RecentlyPlayedViewModel.swift */; };
 		28F0C81029283B200045489C /* RecentlyPlayed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28F0C80F29283B200045489C /* RecentlyPlayed.swift */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +30,7 @@
 		286E78B32925C99000F206A9 /* Adio.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Adio.entitlements; sourceTree = "<group>"; };
 		286E78B52925C99000F206A9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		28C1F6392929861C0077E907 /* RecentlyPlayedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyPlayedView.swift; sourceTree = "<group>"; };
+		28C1F63C2929886B0077E907 /* RecentlyPlayedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyPlayedViewModel.swift; sourceTree = "<group>"; };
 		28F0C80F29283B200045489C /* RecentlyPlayed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyPlayed.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -89,6 +91,7 @@
 		286E78AC2925C98F00F206A9 /* Adio */ = {
 			isa = PBXGroup;
 			children = (
+				28C1F63B2929885B0077E907 /* ViewModels */,
 				28F0C80E29283B0B0045489C /* Models */,
 				285031402926EEE1000B8331 /* Extensions */,
 				2850313A2926EAEC000B8331 /* Views */,
@@ -106,6 +109,14 @@
 				286E78B52925C99000F206A9 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		28C1F63B2929885B0077E907 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				28C1F63C2929886B0077E907 /* RecentlyPlayedViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		28F0C80E29283B0B0045489C /* Models */ = {
@@ -187,6 +198,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				28C1F63A2929861C0077E907 /* RecentlyPlayedView.swift in Sources */,
+				28C1F63D2929886B0077E907 /* RecentlyPlayedViewModel.swift in Sources */,
 				28F0C81029283B200045489C /* RecentlyPlayed.swift in Sources */,
 				2850313C2926EB73000B8331 /* NowPlayingView.swift in Sources */,
 				285031442926F38F000B8331 /* Image+AverageColor.swift in Sources */,
