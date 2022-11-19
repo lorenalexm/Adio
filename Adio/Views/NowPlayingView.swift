@@ -8,9 +8,6 @@
 import SwiftUI
 
 struct NowPlayingView: View {
-    // MARK: - Properties
-    @State var recentlyPlayedShowing = false
-    
     // MARK: - View declaration.
     var body: some View {
         GradientBackground {
@@ -58,33 +55,6 @@ struct NowPlayingView: View {
                 }.padding(.vertical)
                 
                 Spacer()
-                
-                /*
-                Button(action: {
-                    recentlyPlayedShowing = true
-                }, label: {
-                    Text("View recently played")
-                        .font(.title2)
-                        .fontWeight(.semibold)
-                        .foregroundColor(.text)
-                })
-                */
-            }
-        }
-        .sheet(isPresented: $recentlyPlayedShowing) {
-            VStack {
-                HStack {
-                    Text("Recently played:")
-                        .font(.title3)
-                        .padding()
-                    Spacer()
-                }
-                List(0...10, id: \.self) {
-                    Text("Artist \($0)")
-                        .foregroundColor(.text)
-                }
-                .scrollContentBackground(.hidden)
-            .presentationDetents([.medium])
             }
         }
     }
