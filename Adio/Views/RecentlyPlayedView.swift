@@ -8,12 +8,44 @@
 import SwiftUI
 
 struct RecentlyPlayedView: View {
+    // MARK: - Properties.
+    @ObservedObject private var viewModel = RecentlyPlayedViewModel()
+    
+    // MARK: - View declaration.
     var body: some View {
         GradientBackground {
-            List(0...15, id: \.self) {
-                Text("Artist \($0)")
+            if viewModel.recentlyPlayed.count == 0 {
+                Text("Loading..")
+                    .font(.largeTitle)
+                    .foregroundColor(.text)
+            } else {
+                List {
+                    VStack(alignment: .leading) {
+                        ForEach(viewModel.recentlyPlayed, id: \.shID) { songContainer in
+                            Text(songContainer.song.title)
+                                .font(.headline)
+                            Text(songContainer.song.artist)
+                                .font(.subheadline)
+                            Divider()
+                        }
+                    }
+                }
+                .scrollContentBackground(.hidden)
             }
-            .scrollContentBackground(.hidden)
+        }
+        .task {
+            do {
+                _ = try await viewModel.fetchRecentlyPlayed(from: "https://demo.azuracast.com/api/nowplaying")
+            } catch {
+                print("Error fetching recently played songs. Server returned with an error: \(error.localizedDescription)")
+            }
+        }
+        .refreshable {
+            do {
+                _ = try await viewModel.fetchRecentlyPlayed(from: "https://demo.azuracast.com/api/nowplaying")
+            } catch {
+                print("Error fetching recently played songs. Server returned with an error: \(error.localizedDescription)")
+            }
         }
     }
 }
