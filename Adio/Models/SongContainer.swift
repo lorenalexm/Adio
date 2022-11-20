@@ -9,13 +9,13 @@ import Foundation
 
 // MARK: - NowPlaying
 struct SongContainer: Codable {
-    let shID: Int?
+    let shID: Int
     let playedAt: Int?
-    let duration: Int?
-    let playlist: String?
+    let duration: Int
+    let playlist: String
     let streamer: String?
     let isRequest: Bool?
-    let song: Song?
+    let song: Song
     let elapsed: Int?
     let remaining: Int?
 

@@ -9,10 +9,10 @@ import Foundation
 
 // MARK: - Song
 struct Song: Codable {
-    let id: String?
+    let id: String
     let text: String?
-    let artist: String?
-    let title: String?
+    let artist: String
+    let title: String
     let album: String?
     let genre: String?
     let isrc: String?
