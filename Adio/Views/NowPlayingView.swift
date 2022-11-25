@@ -23,27 +23,7 @@ struct NowPlayingView: View {
                 
                 Spacer()
                 
-                RoundedRectangle(cornerRadius: 32)
-                    .frame(width: 250, height: 250)
-                    .foregroundColor(.white)
-                    .shadow(radius: 24)
-                
-                HStack {
-                    VStack(alignment: .leading) {
-                        Text("Track name")
-                            .font(.headline)
-                            .foregroundColor(.text)
-                        Text("Artist name")
-                            .font(.subheadline)
-                            .foregroundColor(.text)
-                    }.padding(.vertical)
-                    
-                    Spacer()
-                    
-                    Text("00:00 / 00:00")
-                        .font(.subheadline)
-                        .foregroundColor(.text)
-                }.padding(.horizontal, 40)
+                SongDetails()
                 
                 HStack(spacing: 60) {
                     Image(systemName: "stop")

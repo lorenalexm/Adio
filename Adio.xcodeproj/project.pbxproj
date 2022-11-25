@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2811F2BE2931871800C44E97 /* SongDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2811F2BD2931871800C44E97 /* SongDetails.swift */; };
 		2850313C2926EB73000B8331 /* NowPlayingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2850313B2926EB73000B8331 /* NowPlayingView.swift */; };
 		285031422926EEF0000B8331 /* Color+AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285031412926EEF0000B8331 /* Color+AppColors.swift */; };
 		285031442926F38F000B8331 /* Image+AverageColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285031432926F38F000B8331 /* Image+AverageColor.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2811F2BD2931871800C44E97 /* SongDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongDetails.swift; sourceTree = "<group>"; };
 		2850313B2926EB73000B8331 /* NowPlayingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingView.swift; sourceTree = "<group>"; };
 		285031412926EEF0000B8331 /* Color+AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+AppColors.swift"; sourceTree = "<group>"; };
 		285031432926F38F000B8331 /* Image+AverageColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+AverageColor.swift"; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				285031462926FB24000B8331 /* GradientBackground.swift */,
+				2811F2BD2931871800C44E97 /* SongDetails.swift */,
 			);
 			path = Elements;
 			sourceTree = "<group>";
@@ -290,6 +293,7 @@
 				2850313C2926EB73000B8331 /* NowPlayingView.swift in Sources */,
 				285031442926F38F000B8331 /* Image+AverageColor.swift in Sources */,
 				28C1F6522929A0760077E907 /* Station.swift in Sources */,
+				2811F2BE2931871800C44E97 /* SongDetails.swift in Sources */,
 				28C1F6582929A0BE0077E907 /* SongContainer.swift in Sources */,
 				28C1F65A2929A54B0077E907 /* Live.swift in Sources */,
 				285031422926EEF0000B8331 /* Color+AppColors.swift in Sources */,
