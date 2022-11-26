@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2811F2BE2931871800C44E97 /* SongDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2811F2BD2931871800C44E97 /* SongDetails.swift */; };
 		2811F2C2293195A700C44E97 /* Int+FormatFromSeconds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2811F2C1293195A700C44E97 /* Int+FormatFromSeconds.swift */; };
+		2811F2C4293199D700C44E97 /* NowPlayingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2811F2C3293199D700C44E97 /* NowPlayingViewModel.swift */; };
 		2850313C2926EB73000B8331 /* NowPlayingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2850313B2926EB73000B8331 /* NowPlayingView.swift */; };
 		285031422926EEF0000B8331 /* Color+AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285031412926EEF0000B8331 /* Color+AppColors.swift */; };
 		285031442926F38F000B8331 /* Image+AverageColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285031432926F38F000B8331 /* Image+AverageColor.swift */; };
@@ -43,6 +44,7 @@
 /* Begin PBXFileReference section */
 		2811F2BD2931871800C44E97 /* SongDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongDetails.swift; sourceTree = "<group>"; };
 		2811F2C1293195A700C44E97 /* Int+FormatFromSeconds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+FormatFromSeconds.swift"; sourceTree = "<group>"; };
+		2811F2C3293199D700C44E97 /* NowPlayingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingViewModel.swift; sourceTree = "<group>"; };
 		2850313B2926EB73000B8331 /* NowPlayingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingView.swift; sourceTree = "<group>"; };
 		285031412926EEF0000B8331 /* Color+AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+AppColors.swift"; sourceTree = "<group>"; };
 		285031432926F38F000B8331 /* Image+AverageColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+AverageColor.swift"; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				28C1F63C2929886B0077E907 /* RecentlyPlayedViewModel.swift */,
+				2811F2C3293199D700C44E97 /* NowPlayingViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -301,6 +304,7 @@
 				28C1F65A2929A54B0077E907 /* Live.swift in Sources */,
 				2811F2C2293195A700C44E97 /* Int+FormatFromSeconds.swift in Sources */,
 				285031422926EEF0000B8331 /* Color+AppColors.swift in Sources */,
+				2811F2C4293199D700C44E97 /* NowPlayingViewModel.swift in Sources */,
 				28C1F6542929A0900077E907 /* PlayingNext.swift in Sources */,
 				286E78AE2925C98F00F206A9 /* AdioApp.swift in Sources */,
 				285031472926FB24000B8331 /* GradientBackground.swift in Sources */,
