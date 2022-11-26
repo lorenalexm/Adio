@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct NowPlayingView: View {
+    // MARK: - Properties.
+    let viewModel = NowPlayingViewModel()
+    
     // MARK: - View declaration.
     var body: some View {
         GradientBackground {
@@ -23,7 +26,7 @@ struct NowPlayingView: View {
                 
                 Spacer()
                 
-                SongDetails()
+                SongDetails(songContainer: Binding(get: { viewModel.songContainer! }, set: { viewModel.songContainer = $0 }))
                 
                 HStack(spacing: 60) {
                     Image(systemName: "stop")
@@ -36,6 +39,9 @@ struct NowPlayingView: View {
                 
                 Spacer()
             }
+        }
+        .task {
+            print("Hello, world.")
         }
     }
 }
