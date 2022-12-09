@@ -10,10 +10,10 @@ import SwiftUI
 struct GradientBackground<Content: View>: View {
     // MARK: - Properties.
     let content: Content
-    let gradientColors: [Color]
+    var gradientColors: [Color]
     
     // MARK: - Initializer.
-    init(gradientColors: [Color] = [.backgroundLight, .backgroundDark], @ViewBuilder _ content: () -> Content) {
+    init(gradientColors: [Color] = [.background, .backgroundDarker], @ViewBuilder _ content: () -> Content) {
         self.gradientColors = gradientColors
         self.content = content()
     }

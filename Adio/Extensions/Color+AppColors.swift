@@ -8,7 +8,10 @@
 import SwiftUI
 
 extension Color {
-    static let backgroundLight = Color(red: 0.357, green: 0.349, blue: 0.557)
-    static let backgroundDark = Color(red: 0.306, green: 0.306, blue: 0.478)
-    static let text = Color(red: 0.988, green: 0.996, blue: 0.996)
+    static let text = Color("Text")
+    static let cirton = Color("Cirton")
+    static let spookySky = Color("Spooky Sky")
+    static let hope = Color("Hope")
+    static let background = Color("Background")
+    static let backgroundDarker = Color("Background Darker")
 }
