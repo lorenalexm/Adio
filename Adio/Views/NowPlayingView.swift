@@ -19,23 +19,32 @@ struct NowPlayingView: View {
                     Text("Now Playing")
                         .font(.title)
                         .fontWeight(.bold)
-                        .foregroundColor(.text)
+                        .foregroundColor(.cirton)
                         .padding(20)
                     Spacer()
                 }
                 
                 Spacer()
                 
-                SongDetails(songContainer: Binding(get: { viewModel.songContainer! }, set: { viewModel.songContainer = $0 }))
-                
-                HStack(spacing: 60) {
-                    Image(systemName: "stop")
-                        .font(.system(size: 36))
+                if let container = viewModel.songContainer {
+                    SongDetails(songContainer: Binding<SongContainer>(get: { container }, set: { viewModel.songContainer = $0 }))
+                    
+                    HStack(spacing: 60) {
+                        Image(systemName: "stop")
+                            .font(.system(size: 36))
+                            .foregroundColor(.text)
+                        Image(systemName: "play")
+                            .font(.system(size: 36))
+                            .foregroundColor(.text)
+                    }.padding(.vertical)
+                } else {
+                    ProgressView()
+                        .tint(.text)
+                        .scaleEffect(2, anchor: .center)
+                        .padding()
+                    Text("Loading now playing..")
                         .foregroundColor(.text)
-                    Image(systemName: "play")
-                        .font(.system(size: 36))
-                        .foregroundColor(.text)
-                }.padding(.vertical)
+                }
                 
                 Spacer()
             }
