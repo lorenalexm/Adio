@@ -16,7 +16,7 @@ struct SongContainer: Codable {
     let streamer: String?
     let isRequest: Bool?
     let song: Song
-    let elapsed: Int?
+    let elapsed: Int
     let remaining: Int?
 
     enum CodingKeys: String, CodingKey {
