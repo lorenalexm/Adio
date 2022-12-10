@@ -11,7 +11,7 @@ extension Int {
     /// Takes in an `Int` as seconds and extracts hours, minutes, and seconds from that number.
     /// - Parameter seconds: The number from which to extract the time.
     /// - Returns: A tuple containing the values for hours, minutes, and seconds; in that order.
-    func formatFromSeconds(seconds: Int) -> (Int, Int, Int) {
+    static func formatFromSeconds(_ seconds: Int) -> (hours: Int, minutes: Int, seconds: Int) {
         return (seconds / 3600, (seconds % 3600) / 60, (seconds % 3600) % 60)
     }
 }
