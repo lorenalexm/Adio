@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		280F34F62943FFAF0013BD4C /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = 280F34F52943FFAF0013BD4C /* Starscream */; };
 		2811F2BE2931871800C44E97 /* SongDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2811F2BD2931871800C44E97 /* SongDetails.swift */; };
 		2811F2C2293195A700C44E97 /* Int+FormatFromSeconds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2811F2C1293195A700C44E97 /* Int+FormatFromSeconds.swift */; };
 		2811F2C4293199D700C44E97 /* NowPlayingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2811F2C3293199D700C44E97 /* NowPlayingViewModel.swift */; };
@@ -74,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				280F34F62943FFAF0013BD4C /* Starscream in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,6 +208,9 @@
 			dependencies = (
 			);
 			name = Adio;
+			packageProductDependencies = (
+				280F34F52943FFAF0013BD4C /* Starscream */,
+			);
 			productName = Adio;
 			productReference = 286E78AA2925C98F00F206A9 /* Adio.app */;
 			productType = "com.apple.product-type.application";
@@ -256,6 +261,9 @@
 				Base,
 			);
 			mainGroup = 286E78A12925C98F00F206A9;
+			packageReferences = (
+				280F34F42943FFAF0013BD4C /* XCRemoteSwiftPackageReference "Starscream" */,
+			);
 			productRefGroup = 286E78AB2925C98F00F206A9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -591,6 +599,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		280F34F42943FFAF0013BD4C /* XCRemoteSwiftPackageReference "Starscream" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/daltoniam/Starscream";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		280F34F52943FFAF0013BD4C /* Starscream */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 280F34F42943FFAF0013BD4C /* XCRemoteSwiftPackageReference "Starscream" */;
+			productName = Starscream;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 286E78A22925C98F00F206A9 /* Project object */;
 }
