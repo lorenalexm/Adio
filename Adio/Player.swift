@@ -13,7 +13,7 @@ class Player: ObservableObject, WebSocketDelegate {
     private let socket: WebSocket
     private let decoder = JSONDecoder()
     private var connected = false
-    private var radioDetails: Radio?
+    private var radioDetails: RadioElement?
     
     @Published var nowPlaying: SongContainer?
     @Published var recentlyPlayed: [SongContainer]?    
@@ -39,9 +39,13 @@ class Player: ObservableObject, WebSocketDelegate {
         case .disconnected(_, _):
             connected = false
         case .text(let message):
-            radioDetails = try? decoder.decode(Radio.self, from: message.data(using: .utf8)!)
-            nowPlaying = radioDetails?[0].nowPlaying
-            recentlyPlayed = radioDetails?[0].songHistory
+            print("Received data message from remote socket server.")
+            radioDetails = try? decoder.decode(RadioElement.self, from: message.data(using: .utf8)!)
+            guard let radioDetails else {
+                return
+            }
+            nowPlaying = radioDetails.nowPlaying
+            recentlyPlayed = radioDetails.songHistory
         case .error(let error):
             connected = false
             print("Received error from remote socket server! \n\(error!.localizedDescription)")
