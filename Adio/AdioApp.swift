@@ -9,6 +9,10 @@ import SwiftUI
 
 @main
 struct AdioApp: App {
+    // MARK: - Properties.
+    @StateObject private var player = Player()
+    
+    // MARK: - View declaration.
     var body: some Scene {
         WindowGroup {
             TabView {
@@ -22,6 +26,7 @@ struct AdioApp: App {
                         Label("Recently Played", systemImage: "clock.fill")
                     }
             }
+            .environmentObject(player)
             .onAppear {
                 let appearance = UITabBarAppearance()
                 appearance.backgroundEffect = UIBlurEffect(style: .systemUltraThinMaterial)
