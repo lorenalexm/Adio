@@ -31,11 +31,22 @@ struct SongDetails: View {
                 
                 Spacer()
                 
-                Text("00:00 / 00:00")
+                Text("\(formattedTime(from: songContainer.elapsed)) / \(formattedTime(from: songContainer.duration))")
                     .font(.subheadline)
                     .foregroundColor(.text)
             }.padding(.horizontal, 40)
         }
+    }
+    
+    // MARK: - Functions
+    /// Takes a number of seconds, and formats it into "00:00" format. Ignores hours.
+    /// - Parameter time: The seconds to parse.
+    /// - Returns: A string with the formatted time.
+    func formattedTime(from time: Int) -> String {
+        let formatted = Int.formatFromSeconds(time)
+        let minutes = String(format: "%02d", formatted.minutes)
+        let seconds = String(format: "%02d", formatted.seconds)
+        return "\(minutes):\(seconds)"
     }
 }
 
@@ -56,7 +67,7 @@ struct SongDetailsShell: View {
     // MARK: - Functions.
     init() {
         song = Song(id: "1", text: nil, artist: "Upcoming artist", title: "The most awesome song", album: nil, genre: nil, isrc: nil, lyrics: nil, art: nil, customFields: nil)
-        container = SongContainer(shID: 1, playedAt: nil, duration: 600, playlist: "Default", streamer: nil, isRequest: nil, song: song, elapsed: nil, remaining: nil)
+        container = SongContainer(shID: 1, playedAt: nil, duration: 256, playlist: "Default", streamer: nil, isRequest: nil, song: song, elapsed: 128, remaining: nil)
     }
 }
 
