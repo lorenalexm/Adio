@@ -14,10 +14,35 @@ struct SongDetails: View {
     // MARK: - View declaration.
     var body: some View {
         VStack {
-            RoundedRectangle(cornerRadius: 32)
-                .frame(width: 250, height: 250)
-                .foregroundColor(.white)
-                .shadow(radius: 24)
+            if let artURL = songContainer.song.art {
+                AsyncImage(url: URL(string: artURL), transaction: Transaction(animation: .spring())) { phase in
+                    switch phase {
+                    case .empty:
+                        RoundedRectangle(cornerRadius: 32)
+                            .frame(width: 250, height: 250)
+                            .foregroundColor(.white)
+                            .shadow(radius: 20)
+                            .transition(.scale)
+                    case .success(let image):
+                        image
+                            .resizable()
+                            .frame(width: 250, height: 250)
+                            .cornerRadius(32)
+                            .shadow(radius: 20)
+                            .transition(.scale)
+                    default:
+                        Text("Error fetching art!")
+                            .font(.title2)
+                            .fontWeight(.black)
+                            .foregroundColor(.text)
+                    }
+                }
+            } else {
+                Text("Error fetching art!")
+                    .font(.title2)
+                    .fontWeight(.black)
+                    .foregroundColor(.text)
+            }
             
             HStack {
                 VStack(alignment: .leading) {
@@ -58,21 +83,24 @@ struct SongDetailsShell: View {
     
     // MARK: - View declaration.
     var body: some View {
-        ZStack {
-            Color.gray.ignoresSafeArea()
-            SongDetails(songContainer: $container)
-        }
+        SongDetails(songContainer: $container)
     }
     
     // MARK: - Functions.
-    init() {
-        song = Song(id: "1", text: nil, artist: "Upcoming artist", title: "The most awesome song", album: nil, genre: nil, isrc: nil, lyrics: nil, art: nil, customFields: nil)
+    init(shouldArtFailToLoad: Bool = false) {
+        song = Song(id: "1", text: nil, artist: "Upcoming artist", title: "The most awesome song", album: nil, genre: nil, isrc: nil, lyrics: nil, art: shouldArtFailToLoad ? nil : "https://picsum.photos/250", customFields: nil)
         container = SongContainer(shID: 1, playedAt: nil, duration: 256, playlist: "Default", streamer: nil, isRequest: nil, song: song, elapsed: 128, remaining: nil)
     }
 }
 
 struct SongDetails_Previews: PreviewProvider {
     static var previews: some View {
-        SongDetailsShell()
+        Group{
+            SongDetailsShell()
+                .previewDisplayName("Art successfully fetched.")
+            
+            SongDetailsShell(shouldArtFailToLoad: true)
+                .previewDisplayName("Art fetched failed.")
+        }
     }
 }

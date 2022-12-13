@@ -21,13 +21,40 @@ struct RecentlyPlayedView: View {
                         .foregroundColor(.text)
                 } else {
                     List {
-                        VStack(alignment: .leading) {
-                            ForEach(recent, id: \.shID) { container in
-                                Text(container.song.title)
-                                    .font(.headline)
-                                Text(container.song.artist)
-                                    .font(.subheadline)
-                                Divider()
+                        ForEach(recent, id: \.shID) { container in
+                            HStack {
+                                if let artURL = container.song.art {
+                                    AsyncImage(url: URL(string: artURL), transaction: Transaction(animation: .spring())) { phase in
+                                        switch phase {
+                                        case .empty:
+                                            RoundedRectangle(cornerRadius: 8)
+                                                .frame(width: 48, height: 48)
+                                                .foregroundColor(.white)
+                                                .shadow(radius: 20)
+                                                .transition(.scale)
+                                        case .success(let image):
+                                            image
+                                                .resizable()
+                                                .frame(width: 48, height: 48)
+                                                .cornerRadius(8)
+                                                .shadow(radius: 20)
+                                                .transition(.scale)
+                                        default:
+                                            Text("Error fetching art!")
+                                                .font(.title2)
+                                                .fontWeight(.black)
+                                                .foregroundColor(.text)
+                                        }
+                                    }
+                                    .padding(.trailing)
+                                }
+                                
+                                VStack(alignment: .leading) {
+                                    Text(container.song.title)
+                                        .font(.headline)
+                                    Text(container.song.artist)
+                                        .font(.subheadline)
+                                }
                             }
                         }
                     }
