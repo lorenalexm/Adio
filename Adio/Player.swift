@@ -40,8 +40,15 @@ class Player: ObservableObject, WebSocketDelegate {
             connected = false
         case .text(let message):
             print("Received data message from remote socket server.")
-            radioDetails = try? decoder.decode(RadioElement.self, from: message.data(using: .utf8)!)
+            let sanitized = sanitizeUnicodeEmoji(from: message)
+            guard let sanitized else {
+                print("Unable to sanitize JSON string!")
+                return
+            }
+            
+            radioDetails = try? decoder.decode(RadioElement.self, from: sanitized.data(using: .utf8)!)
             guard let radioDetails else {
+                print("Unable to decode message from remote socket server!")
                 return
             }
             nowPlaying = radioDetails.nowPlaying
@@ -52,5 +59,34 @@ class Player: ObservableObject, WebSocketDelegate {
         default:
             break
         }
+    }
+    
+    
+    /// Attempts to sanatize a JSON `String` by escaping unicode characters.
+    /// - Parameter unsanitized: The JSON `String` to be sanatized.
+    /// - Returns: A new string with properly escaped unicode characters.
+    func sanitizeUnicodeEmoji(from unsanitized: String) -> String? {
+        let regex = try? NSRegularExpression(pattern: #"\\u[0-9a-fA-F]{4}"#)
+        guard let regex else {
+            print("Unable to create regex!")
+            return nil
+        }
+        
+        let matches = regex.matches(in: unsanitized, range: NSMakeRange(0, unsanitized.count))
+        let mutableString = NSMutableString(string: unsanitized)
+
+        matches.reversed().forEach { match in
+            guard let range = Range(match.range, in: unsanitized) else {
+                return
+            }
+            let matchedString = String(unsanitized[range])
+
+            let replacement = "\\\(matchedString)"
+            //replacement.insert("{", at: replacement.index(replacement.startIndex, offsetBy: 3))
+            //replacement.insert("}", at: replacement.endIndex)
+            
+            regex.replaceMatches(in: mutableString, options: [], range: match.range, withTemplate: replacement)
+        }
+        return String(mutableString)
     }
 }
