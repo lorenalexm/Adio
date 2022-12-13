@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		280F34F32943FF2D0013BD4C /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 280F34F22943FF2D0013BD4C /* Player.swift */; };
+		280F34F32943FF2D0013BD4C /* SocketClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 280F34F22943FF2D0013BD4C /* SocketClient.swift */; };
 		280F34F62943FFAF0013BD4C /* Starscream in Frameworks */ = {isa = PBXBuildFile; productRef = 280F34F52943FFAF0013BD4C /* Starscream */; };
 		2811F2BE2931871800C44E97 /* SongDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2811F2BD2931871800C44E97 /* SongDetails.swift */; };
 		2811F2C2293195A700C44E97 /* Int+FormatFromSeconds.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2811F2C1293195A700C44E97 /* Int+FormatFromSeconds.swift */; };
@@ -42,7 +42,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		280F34F22943FF2D0013BD4C /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		280F34F22943FF2D0013BD4C /* SocketClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketClient.swift; sourceTree = "<group>"; };
 		2811F2BD2931871800C44E97 /* SongDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongDetails.swift; sourceTree = "<group>"; };
 		2811F2C1293195A700C44E97 /* Int+FormatFromSeconds.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+FormatFromSeconds.swift"; sourceTree = "<group>"; };
 		2850313B2926EB73000B8331 /* NowPlayingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingView.swift; sourceTree = "<group>"; };
@@ -144,7 +144,7 @@
 				286E78B12925C99000F206A9 /* Assets.xcassets */,
 				286E78B32925C99000F206A9 /* Adio.entitlements */,
 				286E78B42925C99000F206A9 /* Preview Content */,
-				280F34F22943FF2D0013BD4C /* Player.swift */,
+				280F34F22943FF2D0013BD4C /* SocketClient.swift */,
 			);
 			path = Adio;
 			sourceTree = "<group>";
@@ -301,7 +301,7 @@
 				2811F2C2293195A700C44E97 /* Int+FormatFromSeconds.swift in Sources */,
 				285031422926EEF0000B8331 /* Color+AppColors.swift in Sources */,
 				28C1F6542929A0900077E907 /* PlayingNext.swift in Sources */,
-				280F34F32943FF2D0013BD4C /* Player.swift in Sources */,
+				280F34F32943FF2D0013BD4C /* SocketClient.swift in Sources */,
 				286E78AE2925C98F00F206A9 /* AdioApp.swift in Sources */,
 				285031472926FB24000B8331 /* GradientBackground.swift in Sources */,
 			);

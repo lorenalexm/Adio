@@ -10,7 +10,7 @@ import SwiftUI
 @main
 struct AdioApp: App {
     // MARK: - Properties.
-    @StateObject private var player = Player()
+    @StateObject private var socketClient = SocketClient()
     
     // MARK: - View declaration.
     var body: some Scene {
@@ -26,7 +26,7 @@ struct AdioApp: App {
                         Label("Recently Played", systemImage: "clock.fill")
                     }
             }
-            .environmentObject(player)
+            .environmentObject(socketClient)
             .onAppear {
                 let appearance = UITabBarAppearance()
                 appearance.backgroundEffect = UIBlurEffect(style: .systemUltraThinMaterial)

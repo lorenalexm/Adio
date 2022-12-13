@@ -9,7 +9,7 @@ import SwiftUI
 
 struct NowPlayingView: View {
     // MARK: - Properties.
-    @EnvironmentObject var player: Player
+    @EnvironmentObject var socketClient: SocketClient
     
     // MARK: - View declaration.
     var body: some View {
@@ -26,8 +26,8 @@ struct NowPlayingView: View {
                 
                 Spacer()
                 
-                if let container = player.nowPlaying {
-                    SongDetails(songContainer: Binding<SongContainer>(get: { container }, set: { player.nowPlaying = $0 }))
+                if let container = socketClient.nowPlaying {
+                    SongDetails(songContainer: Binding<SongContainer>(get: { container }, set: { socketClient.nowPlaying = $0 }))
                     
                     HStack(spacing: 60) {
                         Image(systemName: "stop")
@@ -57,11 +57,11 @@ struct NowPlayingView: View {
 
 struct NowPlayingView_Previews: PreviewProvider {
     // MARK: - Properties.
-    static var player = Player()
+    static var socketClient = SocketClient()
     
     // MARK: - View declaration
     static var previews: some View {
         NowPlayingView()
-            .environmentObject(player)
+            .environmentObject(socketClient)
     }
 }

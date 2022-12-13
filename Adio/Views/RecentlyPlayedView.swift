@@ -9,12 +9,12 @@ import SwiftUI
 
 struct RecentlyPlayedView: View {
     // MARK: - Properties.
-    @EnvironmentObject private var player: Player
+    @EnvironmentObject private var socketClient: SocketClient
     
     // MARK: - View declaration.
     var body: some View {
         GradientBackground {
-            if let recent = player.recentlyPlayed {
+            if let recent = socketClient.recentlyPlayed {
                 if recent.count == 0 {
                     Text("Loading..")
                         .font(.largeTitle)
@@ -44,11 +44,11 @@ struct RecentlyPlayedView: View {
 
 struct RecentlyPlayedView_Previews: PreviewProvider {
     // MARK: - Properties.
-    static let player = Player()
+    static let socketClient = SocketClient()
     
     // MARK: - View declaration.
     static var previews: some View {
         RecentlyPlayedView()
-            .environmentObject(player)
+            .environmentObject(socketClient)
     }
 }

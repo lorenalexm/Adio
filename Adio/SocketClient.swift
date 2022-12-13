@@ -1,5 +1,5 @@
 //
-//  Player.swift
+//  SocketClient.swift
 //  Adio
 //
 //  Created by Alex Loren on 12/9/22.
@@ -8,7 +8,7 @@
 import SwiftUI
 import Starscream
 
-class Player: ObservableObject, WebSocketDelegate {
+class SocketClient: ObservableObject, WebSocketDelegate {
     // MARK: - Properties.
     private let socket: WebSocket
     private let decoder = JSONDecoder()
