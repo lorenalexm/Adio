@@ -31,7 +31,7 @@ struct SongDetails: View {
                 
                 Spacer()
                 
-                Text("\(formattedTime(from: songContainer.elapsed)) / \(formattedTime(from: songContainer.duration))")
+                Text("\(formattedTime(from: songContainer.elapsed ?? 0)) / \(formattedTime(from: songContainer.duration))")
                     .font(.subheadline)
                     .foregroundColor(.text)
             }.padding(.horizontal, 40)
