@@ -16,6 +16,7 @@
 		285031442926F38F000B8331 /* Image+AverageColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285031432926F38F000B8331 /* Image+AverageColor.swift */; };
 		285031472926FB24000B8331 /* GradientBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 285031462926FB24000B8331 /* GradientBackground.swift */; };
 		28612DDA2948DB3500A8E5F3 /* SwiftAudioEx in Frameworks */ = {isa = PBXBuildFile; productRef = 28612DD92948DB3500A8E5F3 /* SwiftAudioEx */; };
+		28612DDC2948DD0F00A8E5F3 /* StreamPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28612DDB2948DD0F00A8E5F3 /* StreamPlayer.swift */; };
 		286E78AE2925C98F00F206A9 /* AdioApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 286E78AD2925C98F00F206A9 /* AdioApp.swift */; };
 		286E78B22925C99000F206A9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 286E78B12925C99000F206A9 /* Assets.xcassets */; };
 		286E78B62925C99000F206A9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 286E78B52925C99000F206A9 /* Preview Assets.xcassets */; };
@@ -51,6 +52,7 @@
 		285031412926EEF0000B8331 /* Color+AppColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+AppColors.swift"; sourceTree = "<group>"; };
 		285031432926F38F000B8331 /* Image+AverageColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Image+AverageColor.swift"; sourceTree = "<group>"; };
 		285031462926FB24000B8331 /* GradientBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientBackground.swift; sourceTree = "<group>"; };
+		28612DDB2948DD0F00A8E5F3 /* StreamPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamPlayer.swift; sourceTree = "<group>"; };
 		286E78AA2925C98F00F206A9 /* Adio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Adio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		286E78AD2925C98F00F206A9 /* AdioApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdioApp.swift; sourceTree = "<group>"; };
 		286E78B12925C99000F206A9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				285031402926EEE1000B8331 /* Extensions */,
 				2850313A2926EAEC000B8331 /* Views */,
 				286E78AD2925C98F00F206A9 /* AdioApp.swift */,
+				28612DDB2948DD0F00A8E5F3 /* StreamPlayer.swift */,
 				286E78B12925C99000F206A9 /* Assets.xcassets */,
 				286E78B32925C99000F206A9 /* Adio.entitlements */,
 				286E78B42925C99000F206A9 /* Preview Content */,
@@ -310,6 +313,7 @@
 				285031422926EEF0000B8331 /* Color+AppColors.swift in Sources */,
 				28C1F6542929A0900077E907 /* PlayingNext.swift in Sources */,
 				280F34F32943FF2D0013BD4C /* SocketClient.swift in Sources */,
+				28612DDC2948DD0F00A8E5F3 /* StreamPlayer.swift in Sources */,
 				286E78AE2925C98F00F206A9 /* AdioApp.swift in Sources */,
 				285031472926FB24000B8331 /* GradientBackground.swift in Sources */,
 			);
