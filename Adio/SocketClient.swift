@@ -15,6 +15,7 @@ class SocketClient: ObservableObject, WebSocketDelegate {
     private var connected = false
     private var radioDetails: RadioElement?
     
+    @Published var radioUrl: String?
     @Published var nowPlaying: SongContainer?
     @Published var recentlyPlayed: [SongContainer]?    
     
@@ -51,8 +52,7 @@ class SocketClient: ObservableObject, WebSocketDelegate {
                 print("Unable to decode message from remote socket server!")
                 return
             }
-            nowPlaying = radioDetails.nowPlaying
-            recentlyPlayed = radioDetails.songHistory
+            updateProperties(from: radioDetails)
         case .error(let error):
             connected = false
             print("Received error from remote socket server! \n\(error!.localizedDescription)")
@@ -60,7 +60,6 @@ class SocketClient: ObservableObject, WebSocketDelegate {
             break
         }
     }
-    
     
     /// Attempts to sanatize a JSON `String` by escaping unicode characters.
     /// - Parameter unsanitized: The JSON `String` to be sanatized.
@@ -88,5 +87,18 @@ class SocketClient: ObservableObject, WebSocketDelegate {
             regex.replaceMatches(in: mutableString, options: [], range: match.range, withTemplate: replacement)
         }
         return String(mutableString)
+    }
+    
+    /// Updates the class properties from the current `RadioElement`.
+    /// - Parameter radio: The current radio information from the remote server.
+    func updateProperties(from radio: RadioElement) {
+        guard let mounts = radio.station?.mounts else {
+            print("Unable to find a valid station mount!")
+            return
+        }
+        
+        radioUrl = mounts[0].url
+        nowPlaying = radio.nowPlaying
+        recentlyPlayed = radio.songHistory
     }
 }
