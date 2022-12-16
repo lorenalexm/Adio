@@ -10,6 +10,7 @@ import SwiftUI
 struct NowPlayingView: View {
     // MARK: - Properties.
     @EnvironmentObject var socketClient: SocketClient
+    @EnvironmentObject var player: StreamPlayer
     
     // MARK: - View declaration.
     var body: some View {

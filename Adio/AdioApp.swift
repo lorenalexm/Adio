@@ -11,6 +11,7 @@ import SwiftUI
 struct AdioApp: App {
     // MARK: - Properties.
     @StateObject private var socketClient = SocketClient()
+    @StateObject private var player = StreamPlayer.shared
     
     // MARK: - View declaration.
     var body: some Scene {
@@ -27,6 +28,7 @@ struct AdioApp: App {
                     }
             }
             .environmentObject(socketClient)
+            .environmentObject(player)
             .onAppear {
                 let appearance = UITabBarAppearance()
                 appearance.backgroundEffect = UIBlurEffect(style: .systemUltraThinMaterial)
