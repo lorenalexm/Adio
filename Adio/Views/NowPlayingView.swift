@@ -27,8 +27,8 @@ struct NowPlayingView: View {
                 
                 Spacer()
                 
-                if let container = socketClient.nowPlaying {
-                    SongDetails(songContainer: Binding<SongContainer>(get: { container }, set: { socketClient.nowPlaying = $0 }))
+                if socketClient.nowPlaying != nil {
+                    SongDetails()
                     
                     HStack(spacing: 60) {
                         if StreamPlayer.shared.isPlaying {

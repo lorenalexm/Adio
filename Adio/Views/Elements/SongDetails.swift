@@ -9,12 +9,12 @@ import SwiftUI
 
 struct SongDetails: View {
     // MARK: - Properties.
-    @Binding var songContainer: SongContainer
+    @EnvironmentObject private var socketClient: SocketClient
     
     // MARK: - View declaration.
     var body: some View {
         VStack {
-            if let artURL = songContainer.song.art {
+            if let artURL = socketClient.nowPlaying?.song.art {
                 AsyncImage(url: URL(string: artURL), transaction: Transaction(animation: .spring())) { phase in
                     switch phase {
                     case .empty:
@@ -46,17 +46,17 @@ struct SongDetails: View {
             
             HStack {
                 VStack(alignment: .leading) {
-                    Text(songContainer.song.title)
+                    Text(socketClient.nowPlaying?.song.title ?? "No title")
                         .font(.headline)
                         .foregroundColor(.text)
-                    Text(songContainer.song.artist)
+                    Text(socketClient.nowPlaying?.song.artist ?? "No artist")
                         .font(.subheadline)
                         .foregroundColor(.text)
                 }.padding(.vertical)
                 
                 Spacer()
                 
-                Text("\(formattedTime(from: songContainer.elapsed ?? 0)) / \(formattedTime(from: songContainer.duration))")
+                Text("\(formattedTime(from: socketClient.elapsedTime)) / \(formattedTime(from: socketClient.nowPlaying?.duration ?? 0))")
                     .font(.subheadline)
                     .foregroundColor(.text)
             }.padding(.horizontal, 40)
@@ -75,32 +75,12 @@ struct SongDetails: View {
     }
 }
 
-// MARK: - Preview building.
-struct SongDetailsShell: View {
-    // MARK: - Properties.
-    private var song: Song
-    @State var container: SongContainer
-    
-    // MARK: - View declaration.
-    var body: some View {
-        SongDetails(songContainer: $container)
-    }
-    
-    // MARK: - Functions.
-    init(shouldArtFailToLoad: Bool = false) {
-        song = Song(id: "1", text: nil, artist: "Upcoming artist", title: "The most awesome song", album: nil, genre: nil, isrc: nil, lyrics: nil, art: shouldArtFailToLoad ? nil : "https://picsum.photos/250", customFields: nil)
-        container = SongContainer(shID: 1, playedAt: nil, duration: 256, playlist: "Default", streamer: nil, isRequest: nil, song: song, elapsed: 128, remaining: nil)
-    }
-}
-
 struct SongDetails_Previews: PreviewProvider {
+    // MARK: - Properties.
+    static var socketClient = SocketClient()
+    
     static var previews: some View {
-        Group{
-            SongDetailsShell()
-                .previewDisplayName("Art successfully fetched.")
-            
-            SongDetailsShell(shouldArtFailToLoad: true)
-                .previewDisplayName("Art fetched failed.")
-        }
+        SongDetails()
+            .environmentObject(socketClient)
     }
 }
