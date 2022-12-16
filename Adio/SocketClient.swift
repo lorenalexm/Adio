@@ -14,10 +14,12 @@ class SocketClient: ObservableObject, WebSocketDelegate {
     private let decoder = JSONDecoder()
     private var connected = false
     private var radioDetails: RadioElement?
+    private var timer: Timer?
     
     @Published var radioUrl: String?
     @Published var nowPlaying: SongContainer?
-    @Published var recentlyPlayed: [SongContainer]?    
+    @Published var recentlyPlayed: [SongContainer]?
+    @Published var elapsedTime: Int = 0
     
     // MARK: - Functions.
     /// Initializes the `WebSocket` object and sets delegate function.
@@ -37,8 +39,11 @@ class SocketClient: ObservableObject, WebSocketDelegate {
         switch event {
         case .connected(_):
             connected = true
+            timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: tick)
+            
         case .disconnected(_, _):
             connected = false
+            
         case .text(let message):
             print("Received data message from remote socket server.")
             let sanitized = sanitizeUnicodeEmoji(from: message)
@@ -53,14 +58,29 @@ class SocketClient: ObservableObject, WebSocketDelegate {
                 return
             }
             updateProperties(from: radioDetails)
+            syncElapsedTime()
+            
             if let nowPlaying {
                 StreamPlayer.shared.updateNowPlaying(with: nowPlaying)
             }
+            
         case .error(let error):
             connected = false
             print("Received error from remote socket server! \n\(error!.localizedDescription)")
+            
         default:
             break
+        }
+    }
+    
+    /// Syncs the elapsed time to the time received from the remote server.
+    func syncElapsedTime() {
+        guard let nowPlaying,
+        let elapsed = nowPlaying.elapsed else {
+            return
+        }
+        if elapsedTime == 0 || elapsedTime < elapsed {
+            elapsedTime = elapsed
         }
     }
     
@@ -103,5 +123,16 @@ class SocketClient: ObservableObject, WebSocketDelegate {
         radioUrl = mounts[0].url
         nowPlaying = radio.nowPlaying
         recentlyPlayed = radio.songHistory
+    }
+    
+    /// Increments the `Song` elapsed time.
+    /// - Parameter timer: The `Timer` object running the tick.
+    func tick(_ timer: Timer) {
+        guard connected == true else {
+            self.timer?.invalidate()
+            self.timer = nil
+            return
+        }
+        elapsedTime += 1
     }
 }
