@@ -53,6 +53,9 @@ class SocketClient: ObservableObject, WebSocketDelegate {
                 return
             }
             updateProperties(from: radioDetails)
+            if let nowPlaying {
+                StreamPlayer.shared.updateNowPlaying(with: nowPlaying)
+            }
         case .error(let error):
             connected = false
             print("Received error from remote socket server! \n\(error!.localizedDescription)")
