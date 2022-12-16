@@ -31,12 +31,19 @@ struct NowPlayingView: View {
                     SongDetails(songContainer: Binding<SongContainer>(get: { container }, set: { socketClient.nowPlaying = $0 }))
                     
                     HStack(spacing: 60) {
-                        Image(systemName: "stop")
-                            .font(.system(size: 36))
-                            .foregroundColor(.text)
-                        Image(systemName: "play")
-                            .font(.system(size: 36))
-                            .foregroundColor(.text)
+                        if StreamPlayer.shared.isPlaying {
+                            Button(action: onPauseTapped) {
+                                Image(systemName: "pause.fill")
+                                    .font(.system(size: 48))
+                                    .foregroundColor(.text)
+                            }
+                        } else {
+                            Button(action: onPlayTapped) {
+                                Image(systemName: "play.fill")
+                                    .font(.system(size: 48))
+                                    .foregroundColor(.text)
+                            }
+                        }
                     }.padding(.vertical)
                 } else {
                     ProgressView()
@@ -53,6 +60,21 @@ struct NowPlayingView: View {
         .task {
             print("Hello, world.")
         }
+    }
+    
+    // MARK: - Functions.
+    /// Configures the remote stream and begins playing audio.
+    func onPlayTapped() {
+        guard let url = socketClient.radioUrl else {
+            print("Invalid radio url provided!")
+            return
+        }
+        StreamPlayer.shared.play(from: url)
+    }
+    
+    /// Pauses the remote stream audio.
+    func onPauseTapped() {
+        StreamPlayer.shared.pause()
     }
 }
 
