@@ -26,8 +26,6 @@ public class StreamPlayer: ObservableObject {
         } catch {
             print("Received the following error when setting playback category: \(error.localizedDescription)")
         }
-        player.automaticallyWaitsToMinimizeStalling = false
-        player.bufferDuration = 3.0
         player.event.stateChange.addListener(self, handlePlayerStateChange)
     }
     
@@ -79,13 +77,15 @@ public class StreamPlayer: ObservableObject {
     /// Listens for and handles changes in the `AudioPlayer` state.
     /// - Parameter state: The new state of the player.
     func handlePlayerStateChange(state: AudioPlayerState) {
-        switch state {
-        case .playing:
-            isPlaying = true
-        case .paused:
-            isPlaying = false
-        default:
-            return
+        DispatchQueue.main.async { [unowned self] in
+            switch state {
+            case .playing:
+                self.isPlaying = true
+            case .paused:
+                self.isPlaying = false
+            default:
+                return
+            }
         }
     }
 }
