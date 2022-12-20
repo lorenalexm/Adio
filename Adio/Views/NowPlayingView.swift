@@ -57,9 +57,6 @@ struct NowPlayingView: View {
                 Spacer()
             }
         }
-        .task {
-            print("Hello, world.")
-        }
     }
     
     // MARK: - Functions.
