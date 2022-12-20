@@ -79,7 +79,7 @@ class SocketClient: ObservableObject, WebSocketDelegate {
     /// Syncs the elapsed time to the time received from the remote server.
     /// - Parameter time: Which time should `elapsedTime` be synced to.
     func syncElapsedTime(with time: Int) {
-        if elapsedTime == 0 || elapsedTime > time {
+        if elapsedTime != time {
             elapsedTime = time
         }
     }
