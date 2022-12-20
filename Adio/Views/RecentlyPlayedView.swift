@@ -14,52 +14,46 @@ struct RecentlyPlayedView: View {
     // MARK: - View declaration.
     var body: some View {
         GradientBackground {
-            if let recent = socketClient.recentlyPlayed {
-                if recent.count == 0 {
-                    Text("Loading..")
-                        .font(.largeTitle)
-                        .foregroundColor(.text)
-                } else {
-                    List {
-                        ForEach(recent, id: \.shID) { container in
-                            HStack {
-                                if let artURL = container.song.art {
-                                    AsyncImage(url: URL(string: artURL), transaction: Transaction(animation: .spring())) { phase in
-                                        switch phase {
-                                        case .empty:
-                                            RoundedRectangle(cornerRadius: 8)
-                                                .frame(width: 48, height: 48)
-                                                .foregroundColor(.white)
-                                                .shadow(radius: 20)
-                                                .transition(.scale.animation(.spring()))
-                                        case .success(let image):
-                                            image
-                                                .resizable()
-                                                .frame(width: 48, height: 48)
-                                                .cornerRadius(8)
-                                                .shadow(radius: 20)
-                                                .transition(.scale.animation(.spring()))
-                                        default:
-                                            Text("Error fetching art!")
-                                                .font(.title2)
-                                                .fontWeight(.black)
-                                                .foregroundColor(.text)
-                                        }
+            if let recent = socketClient.recentlyPlayed, recent.count > 0 {
+                List {
+                    ForEach(recent, id: \.shID) { container in
+                        HStack {
+                            if let artURL = container.song.art {
+                                AsyncImage(url: URL(string: artURL), transaction: Transaction(animation: .spring())) { phase in
+                                    switch phase {
+                                    case .empty:
+                                        RoundedRectangle(cornerRadius: 8)
+                                            .frame(width: 48, height: 48)
+                                            .foregroundColor(.white)
+                                            .shadow(radius: 20)
+                                            .transition(.scale.animation(.spring()))
+                                    case .success(let image):
+                                        image
+                                            .resizable()
+                                            .frame(width: 48, height: 48)
+                                            .cornerRadius(8)
+                                            .shadow(radius: 20)
+                                            .transition(.scale.animation(.spring()))
+                                    default:
+                                        Text("Error fetching art!")
+                                            .font(.title2)
+                                            .fontWeight(.black)
+                                            .foregroundColor(.text)
                                     }
-                                    .padding(.trailing)
                                 }
-                                
-                                VStack(alignment: .leading) {
-                                    Text(container.song.title)
-                                        .font(.headline)
-                                    Text(container.song.artist)
-                                        .font(.subheadline)
-                                }
+                                .padding(.trailing)
+                            }
+                            
+                            VStack(alignment: .leading) {
+                                Text(container.song.title)
+                                    .font(.headline)
+                                Text(container.song.artist)
+                                    .font(.subheadline)
                             }
                         }
                     }
-                    .scrollContentBackground(.hidden)
                 }
+                .scrollContentBackground(.hidden)
             } else {
                 Text("Unable to load recently played songs.")
                     .font(.title)
