@@ -61,7 +61,9 @@ class SocketClient: ObservableObject, WebSocketDelegate {
             }
             updateProperties(from: radioDetails)
             syncElapsedTime(with: radioDetails.nowPlaying?.elapsed ?? 0)
-            fetchNowPlayingArt()
+            Task {
+                await fetchNowPlayingArt()
+            }
             
             if let nowPlaying {
                 StreamPlayer.shared.updateNowPlaying(with: nowPlaying)
@@ -86,7 +88,7 @@ class SocketClient: ObservableObject, WebSocketDelegate {
     
     /// Attempts to fetch the album art of the song now playing.
     /// Calculates and stores the average color of the art.
-    func fetchNowPlayingArt() {
+    func fetchNowPlayingArt() async {
         guard let nowPlaying,
         let recentlyPlayed,
         nowPlaying.shID != recentlyPlayed[0].shID,
@@ -95,29 +97,28 @@ class SocketClient: ObservableObject, WebSocketDelegate {
             return
         }
         
-        let task = URLSession.shared.dataTask(with: URL(string: artUrl)!) { [unowned self] (data, response, error) in
-            guard error == nil else {
-                print("Failed to fetch now playing art!")
-                return
-            }
-            
-            guard let _ = response as? HTTPURLResponse else {
-                print("Did not receive a valid response from the remote server!")
-                return
-            }
-            
-            guard let data else {
-                print("Image data received was not valid!")
-                return
-            }
-            
-            DispatchQueue.main.async { [unowned self] in
-                self.nowPlayingArt = UIImage(data: data)
-                self.nowPlayingArtColor = nowPlayingArt?.averageColor
-            }
+        guard let image = await fetchImage(from: URL(string: artUrl)!) else {
+            print("Unable to fetch now playing art!")
+            return
         }
         
-        task.resume()
+        DispatchQueue.main.async { [unowned self] in
+            self.nowPlayingArt = image
+            self.nowPlayingArtColor = image.averageColor
+        }
+    }
+    
+    /// Attempts to fetch an image from a remote source.
+    /// - Parameter url: Where should the image be fetched from?
+    /// - Returns: An option `UIImage`.
+    func fetchImage(from url: URL) async -> UIImage? {
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            return UIImage(data: data)
+        } catch {
+            print("Could not fetch image from remote server, error of: \(error.localizedDescription)")
+            return nil
+        }
     }
     
     /// Attempts to sanatize a JSON `String` by escaping unicode characters.
