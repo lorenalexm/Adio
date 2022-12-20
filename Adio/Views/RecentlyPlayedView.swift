@@ -19,7 +19,7 @@ struct RecentlyPlayedView: View {
                     ForEach(recent, id: \.shID) { container in
                         HStack {
                             if let artURL = container.song.art {
-                                RoundedUrlImageView(from: URL(string: artURL)!, width: 64, height: 64)
+                                RoundedUrlImageView(from: URL(string: artURL)!, width: 64, height: 64, shadowRadius: 5)
                                     .padding(.trailing)
                             }
                             

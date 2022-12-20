@@ -17,13 +17,22 @@ struct NowPlayingView: View {
         GradientBackground {
             VStack {
                 HStack {
-                    Text("Now Playing")
-                        .font(.title)
-                        .fontWeight(.bold)
-                        .foregroundColor(.cirton)
-                        .padding(20)
+                    Text("Now")
+                        .font(.system(size: 72))
+                        .fontWeight(.black)
+                        .foregroundLinearGradient(colors: [.cirton, .cirton, .hope], startingAt: .topLeading, endingAt: .bottomTrailing)
+                        .padding(.horizontal, 20)
                     Spacer()
                 }
+                HStack {
+                    Text("Playing")
+                        .font(.system(size: 72))
+                        .fontWeight(.black)
+                        .foregroundLinearGradient(colors: [.cirton, .cirton, .hope], startingAt: .topLeading, endingAt: .bottomTrailing)
+                        .padding(.horizontal, 20)
+                    Spacer()
+                }
+                .padding(.top, -75)
                 
                 Spacer()
                 
