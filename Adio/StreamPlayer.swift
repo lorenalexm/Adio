@@ -75,17 +75,13 @@ public class StreamPlayer: ObservableObject {
             print("No valid artwork URL!")
             return
         }
-        updateMediaPropertyArtwork(with: URL(string: artUrl)!)
         
-        guard container.shID != cachedContainer?.shID else {
-            print("Received container ID is the same as the cached, skipping update.")
-            return
+        if container.shID != cachedContainer?.shID {
+            cachedContainer = container
+            cachedArtwork = nil
         }
-        cachedContainer = container
-        cachedArtwork = nil
         updateMediaPropertyArtwork(with: URL(string: artUrl)!)
         
-        print("Updating now playing information.")
         player.nowPlayingInfoController.set(keyValues: [
             MediaItemProperty.artist(container.song.artist),
             MediaItemProperty.title(container.song.title),
