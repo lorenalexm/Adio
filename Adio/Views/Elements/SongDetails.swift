@@ -14,29 +14,13 @@ struct SongDetails: View {
     // MARK: - View declaration.
     var body: some View {
         VStack {
-            if let artURL = socketClient.nowPlaying?.song.art {
-                AsyncImage(url: URL(string: artURL), transaction: Transaction(animation: .spring())) { phase in
-                    switch phase {
-                    case .empty:
-                        RoundedRectangle(cornerRadius: 32)
-                            .frame(width: 250, height: 250)
-                            .foregroundColor(.white)
-                            .shadow(radius: 20)
-                            .transition(.scale)
-                    case .success(let image):
-                        image
-                            .resizable()
-                            .frame(width: 250, height: 250)
-                            .cornerRadius(32)
-                            .shadow(radius: 20)
-                            .transition(.scale)
-                    default:
-                        Text("Error fetching art!")
-                            .font(.title2)
-                            .fontWeight(.black)
-                            .foregroundColor(.text)
-                    }
-                }
+            if let art = socketClient.nowPlayingArt {
+                Image(uiImage: art)
+                    .resizable()
+                    .frame(width: 250, height: 250)
+                    .cornerRadius(32)
+                    .shadow(color: socketClient.nowPlayingArtColor ?? .black, radius: 20)
+                    .transition(.scale.animation(.spring()))
             } else {
                 Text("Error fetching art!")
                     .font(.title2)
