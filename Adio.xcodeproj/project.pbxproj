@@ -32,6 +32,7 @@
 		28C1F65A2929A54B0077E907 /* Live.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C1F6592929A54B0077E907 /* Live.swift */; };
 		28C1F65C2929A5590077E907 /* Listeners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28C1F65B2929A5590077E907 /* Listeners.swift */; };
 		28D37BC229513ED400C41733 /* RoundedUrlImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D37BC129513ED400C41733 /* RoundedUrlImageView.swift */; };
+		28D6811629527CC700448DB3 /* View+OnEnteredBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D6811529527CC700448DB3 /* View+OnEnteredBackground.swift */; };
 		28D763502948152A007C3502 /* Text+ForegroundLinearGradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 28D7634F2948152A007C3502 /* Text+ForegroundLinearGradient.swift */; };
 /* End PBXBuildFile section */
 
@@ -73,6 +74,7 @@
 		28C1F65B2929A5590077E907 /* Listeners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Listeners.swift; sourceTree = "<group>"; };
 		28D37BC129513ED400C41733 /* RoundedUrlImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedUrlImageView.swift; sourceTree = "<group>"; };
 		28D37BC329514DFE00C41733 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		28D6811529527CC700448DB3 /* View+OnEnteredBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+OnEnteredBackground.swift"; sourceTree = "<group>"; };
 		28D7634F2948152A007C3502 /* Text+ForegroundLinearGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text+ForegroundLinearGradient.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -113,6 +115,7 @@
 				285031432926F38F000B8331 /* Image+AverageColor.swift */,
 				2811F2C1293195A700C44E97 /* Int+FormatFromSeconds.swift */,
 				28D7634F2948152A007C3502 /* Text+ForegroundLinearGradient.swift */,
+				28D6811529527CC700448DB3 /* View+OnEnteredBackground.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -310,6 +313,7 @@
 				28C1F65C2929A5590077E907 /* Listeners.swift in Sources */,
 				2850313C2926EB73000B8331 /* NowPlayingView.swift in Sources */,
 				285031442926F38F000B8331 /* Image+AverageColor.swift in Sources */,
+				28D6811629527CC700448DB3 /* View+OnEnteredBackground.swift in Sources */,
 				28C1F6522929A0760077E907 /* Station.swift in Sources */,
 				2811F2BE2931871800C44E97 /* SongDetails.swift in Sources */,
 				28C1F6582929A0BE0077E907 /* SongContainer.swift in Sources */,

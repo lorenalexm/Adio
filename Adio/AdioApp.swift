@@ -37,6 +37,12 @@ struct AdioApp: App {
                 UITabBar.appearance().standardAppearance = appearance
                 UITabBar.appearance().scrollEdgeAppearance = appearance
             }
+            .onEnteredBackground {
+                guard let container = socketClient.nowPlaying else {
+                    return
+                }
+                player.updateNowPlaying(with: container)
+            }
             .tint(Color.text)
         }
     }
