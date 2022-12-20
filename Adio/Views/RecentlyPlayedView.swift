@@ -19,29 +19,8 @@ struct RecentlyPlayedView: View {
                     ForEach(recent, id: \.shID) { container in
                         HStack {
                             if let artURL = container.song.art {
-                                AsyncImage(url: URL(string: artURL), transaction: Transaction(animation: .spring())) { phase in
-                                    switch phase {
-                                    case .empty:
-                                        RoundedRectangle(cornerRadius: 8)
-                                            .frame(width: 48, height: 48)
-                                            .foregroundColor(.white)
-                                            .shadow(radius: 20)
-                                            .transition(.scale.animation(.spring()))
-                                    case .success(let image):
-                                        image
-                                            .resizable()
-                                            .frame(width: 48, height: 48)
-                                            .cornerRadius(8)
-                                            .shadow(radius: 20)
-                                            .transition(.scale.animation(.spring()))
-                                    default:
-                                        Text("Error fetching art!")
-                                            .font(.title2)
-                                            .fontWeight(.black)
-                                            .foregroundColor(.text)
-                                    }
-                                }
-                                .padding(.trailing)
+                                RoundedUrlImageView(from: URL(string: artURL)!, width: 64, height: 64)
+                                    .padding(.trailing)
                             }
                             
                             VStack(alignment: .leading) {

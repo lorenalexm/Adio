@@ -14,16 +14,11 @@ struct SongDetails: View {
     // MARK: - View declaration.
     var body: some View {
         VStack {
-            if let art = socketClient.nowPlayingArt {
-                Image(uiImage: art)
-                    .resizable()
-                    .frame(width: 250, height: 250)
-                    .cornerRadius(32)
-                    .shadow(color: socketClient.nowPlayingArtColor ?? .black, radius: 20)
-                    .transition(.scale.animation(.spring()))
+            if let artURL = socketClient.nowPlaying?.song.art {
+                RoundedUrlImageView(from: URL(string: artURL)!, width: 250, height: 250, shadowRadius: 20)
                     .id(socketClient.nowPlaying?.shID)
             } else {
-                Text("Error fetching art!")
+                Text("Loading..")
                     .font(.title2)
                     .fontWeight(.black)
                     .foregroundColor(.text)
