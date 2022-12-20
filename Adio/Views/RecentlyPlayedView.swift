@@ -31,14 +31,14 @@ struct RecentlyPlayedView: View {
                                                 .frame(width: 48, height: 48)
                                                 .foregroundColor(.white)
                                                 .shadow(radius: 20)
-                                                .transition(.scale)
+                                                .transition(.scale.animation(.spring()))
                                         case .success(let image):
                                             image
                                                 .resizable()
                                                 .frame(width: 48, height: 48)
                                                 .cornerRadius(8)
                                                 .shadow(radius: 20)
-                                                .transition(.scale)
+                                                .transition(.scale.animation(.spring()))
                                         default:
                                             Text("Error fetching art!")
                                                 .font(.title2)
