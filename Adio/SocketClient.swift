@@ -18,6 +18,8 @@ class SocketClient: ObservableObject, WebSocketDelegate {
     
     @Published var radioUrl: String?
     @Published var nowPlaying: SongContainer?
+    @Published var nowPlayingArt: UIImage?
+    @Published var nowPlayingArtColor: Color?
     @Published var recentlyPlayed: [SongContainer]?
     @Published var elapsedTime: Int = 0
     
@@ -58,7 +60,8 @@ class SocketClient: ObservableObject, WebSocketDelegate {
                 return
             }
             updateProperties(from: radioDetails)
-            syncElapsedTime()
+            syncElapsedTime(with: radioDetails.nowPlaying?.elapsed ?? 0)
+            fetchNowPlayingArt()
             
             if let nowPlaying {
                 StreamPlayer.shared.updateNowPlaying(with: nowPlaying)
@@ -74,14 +77,47 @@ class SocketClient: ObservableObject, WebSocketDelegate {
     }
     
     /// Syncs the elapsed time to the time received from the remote server.
-    func syncElapsedTime() {
+    /// - Parameter time: Which time should `elapsedTime` be synced to.
+    func syncElapsedTime(with time: Int) {
+        if elapsedTime == 0 || elapsedTime > time {
+            elapsedTime = time
+        }
+    }
+    
+    /// Attempts to fetch the album art of the song now playing.
+    /// Calculates and stores the average color of the art.
+    func fetchNowPlayingArt() {
         guard let nowPlaying,
-        let elapsed = nowPlaying.elapsed else {
+        let recentlyPlayed,
+        nowPlaying.shID != recentlyPlayed[0].shID,
+        let artUrl = nowPlaying.song.art else {
+            print("First guard")
             return
         }
-        if elapsedTime == 0 || elapsedTime < elapsed {
-            elapsedTime = elapsed
+        
+        let task = URLSession.shared.dataTask(with: URL(string: artUrl)!) { [unowned self] (data, response, error) in
+            guard error == nil else {
+                print("Failed to fetch now playing art!")
+                return
+            }
+            
+            guard let _ = response as? HTTPURLResponse else {
+                print("Did not receive a valid response from the remote server!")
+                return
+            }
+            
+            guard let data else {
+                print("Image data received was not valid!")
+                return
+            }
+            
+            DispatchQueue.main.async { [unowned self] in
+                self.nowPlayingArt = UIImage(data: data)
+                self.nowPlayingArtColor = nowPlayingArt?.averageColor
+            }
         }
+        
+        task.resume()
     }
     
     /// Attempts to sanatize a JSON `String` by escaping unicode characters.
