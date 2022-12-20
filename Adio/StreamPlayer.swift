@@ -7,6 +7,7 @@
 
 import SwiftAudioEx
 import SwiftUI
+import MediaPlayer
 
 public class StreamPlayer: ObservableObject {
     // MARK: - Properties
@@ -15,6 +16,8 @@ public class StreamPlayer: ObservableObject {
     private let player = AudioPlayer()
     private let audioSession = AudioSessionController.shared
     private var audioItem: DefaultAudioItem?
+    private var cachedContainer: SongContainer?
+    private var cachedArtwork: UIImage?
     
     @Published var isPlaying = false
     
@@ -27,6 +30,7 @@ public class StreamPlayer: ObservableObject {
             print("Received the following error when setting playback category: \(error.localizedDescription)")
         }
         player.event.stateChange.addListener(self, handlePlayerStateChange)
+        player.automaticallyUpdateNowPlayingInfo = true
         player.remoteCommands = [
             .togglePlayPause
         ]
@@ -67,8 +71,22 @@ public class StreamPlayer: ObservableObject {
     /// Updates the information of the currently playing song within the system and OS.
     /// - Parameter container: The `SongContainer` of the currently playing song.
     func updateNowPlaying(with container: SongContainer) {
-        let info = player.nowPlayingInfoController
-        info.set(keyValues: [
+        guard let artUrl = container.song.art else {
+            print("No valid artwork URL!")
+            return
+        }
+        updateMediaPropertyArtwork(with: URL(string: artUrl)!)
+        
+        guard container.shID != cachedContainer?.shID else {
+            print("Received container ID is the same as the cached, skipping update.")
+            return
+        }
+        cachedContainer = container
+        cachedArtwork = nil
+        updateMediaPropertyArtwork(with: URL(string: artUrl)!)
+        
+        print("Updating now playing information.")
+        player.nowPlayingInfoController.set(keyValues: [
             MediaItemProperty.artist(container.song.artist),
             MediaItemProperty.title(container.song.title),
             MediaItemProperty.albumTitle(container.song.album),
@@ -89,5 +107,33 @@ public class StreamPlayer: ObservableObject {
                 return
             }
         }
+    }
+    
+    /// Attempts to fetch an image from a remote source.
+    /// - Parameter url: Where should the image be fetched from?
+    func updateMediaPropertyArtwork(with url: URL) {
+        if cachedArtwork == nil {
+            Task {
+                do {
+                    let (data, _) = try await URLSession.shared.data(from: url)
+                    cachedArtwork = UIImage(data: data)
+                } catch {
+                    print("Could not fetch image from remote server, error of: \(error.localizedDescription)")
+                }
+            }
+        }
+        
+        guard let cachedArtwork else {
+            print("Artwork has yet to be cached!")
+            return
+        }
+        
+        let artwork = MPMediaItemArtwork(boundsSize: cachedArtwork.size, requestHandler: { (size) -> UIImage in
+            return cachedArtwork
+        })
+        let info = player.nowPlayingInfoController
+        info.set(keyValues: [
+            MediaItemProperty.artwork(artwork)
+        ])
     }
 }
