@@ -18,8 +18,6 @@ class SocketClient: ObservableObject, WebSocketDelegate {
     
     @Published var radioUrl: String?
     @Published var nowPlaying: SongContainer?
-    @Published var nowPlayingArt: UIImage?
-    @Published var nowPlayingArtColor: Color?
     @Published var recentlyPlayed: [SongContainer]?
     @Published var elapsedTime: Int = 0
     
@@ -61,9 +59,6 @@ class SocketClient: ObservableObject, WebSocketDelegate {
             }
             updateProperties(from: radioDetails)
             syncElapsedTime(with: radioDetails.nowPlaying?.elapsed ?? 0)
-            Task {
-                await fetchNowPlayingArt()
-            }
             
             if let nowPlaying {
                 StreamPlayer.shared.updateNowPlaying(with: nowPlaying)
@@ -83,41 +78,6 @@ class SocketClient: ObservableObject, WebSocketDelegate {
     func syncElapsedTime(with time: Int) {
         if elapsedTime != time {
             elapsedTime = time
-        }
-    }
-    
-    /// Attempts to fetch the album art of the song now playing.
-    /// Calculates and stores the average color of the art.
-    func fetchNowPlayingArt() async {
-        guard let nowPlaying,
-        let recentlyPlayed,
-        nowPlaying.shID != recentlyPlayed[0].shID,
-        let artUrl = nowPlaying.song.art else {
-            print("First guard")
-            return
-        }
-        
-        guard let image = await fetchImage(from: URL(string: artUrl)!) else {
-            print("Unable to fetch now playing art!")
-            return
-        }
-        
-        DispatchQueue.main.async { [unowned self] in
-            self.nowPlayingArt = image
-            self.nowPlayingArtColor = image.averageColor
-        }
-    }
-    
-    /// Attempts to fetch an image from a remote source.
-    /// - Parameter url: Where should the image be fetched from?
-    /// - Returns: An option `UIImage`.
-    func fetchImage(from url: URL) async -> UIImage? {
-        do {
-            let (data, _) = try await URLSession.shared.data(from: url)
-            return UIImage(data: data)
-        } catch {
-            print("Could not fetch image from remote server, error of: \(error.localizedDescription)")
-            return nil
         }
     }
     
