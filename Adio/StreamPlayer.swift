@@ -27,6 +27,9 @@ public class StreamPlayer: ObservableObject {
             print("Received the following error when setting playback category: \(error.localizedDescription)")
         }
         player.event.stateChange.addListener(self, handlePlayerStateChange)
+        player.remoteCommands = [
+            .togglePlayPause
+        ]
     }
     
     /// Plays an audio stream from the given url stream.
