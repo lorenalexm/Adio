@@ -21,6 +21,7 @@ struct SongDetails: View {
                     .cornerRadius(32)
                     .shadow(color: socketClient.nowPlayingArtColor ?? .black, radius: 20)
                     .transition(.scale.animation(.spring()))
+                    .id(socketClient.nowPlaying?.shID)
             } else {
                 Text("Error fetching art!")
                     .font(.title2)
