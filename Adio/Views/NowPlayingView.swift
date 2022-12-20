@@ -71,11 +71,13 @@ struct NowPlayingView: View {
     // MARK: - Functions.
     /// Configures the remote stream and begins playing audio.
     func onPlayTapped() {
-        guard let url = socketClient.radioUrl else {
+        guard let url = socketClient.radioUrl,
+        let container = socketClient.nowPlaying else {
             print("Invalid radio url provided!")
             return
         }
         StreamPlayer.shared.play(from: url)
+        StreamPlayer.shared.updateNowPlaying(with: container)
     }
     
     /// Pauses the remote stream audio.
