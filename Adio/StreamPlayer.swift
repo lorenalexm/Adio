@@ -69,8 +69,7 @@ public class StreamPlayer: ObservableObject {
             MediaItemProperty.artist(container.song.artist),
             MediaItemProperty.title(container.song.title),
             MediaItemProperty.albumTitle(container.song.album),
-            MediaItemProperty.duration(Double(container.duration / 60)),
-            NowPlayingInfoProperty.elapsedPlaybackTime(Double((container.elapsed ?? 0) / 60))
+            MediaItemProperty.duration(Double(container.duration))
         ])
     }
     
