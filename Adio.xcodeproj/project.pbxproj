@@ -72,6 +72,7 @@
 		28C1F6592929A54B0077E907 /* Live.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Live.swift; sourceTree = "<group>"; };
 		28C1F65B2929A5590077E907 /* Listeners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Listeners.swift; sourceTree = "<group>"; };
 		28D37BC129513ED400C41733 /* RoundedUrlImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedUrlImageView.swift; sourceTree = "<group>"; };
+		28D37BC329514DFE00C41733 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		28D7634F2948152A007C3502 /* Text+ForegroundLinearGradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Text+ForegroundLinearGradient.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -147,6 +148,7 @@
 		286E78AC2925C98F00F206A9 /* Adio */ = {
 			isa = PBXGroup;
 			children = (
+				28D37BC329514DFE00C41733 /* Info.plist */,
 				28F0C80E29283B0B0045489C /* Models */,
 				285031402926EEE1000B8331 /* Extensions */,
 				2850313A2926EAEC000B8331 /* Views */,
@@ -465,6 +467,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Adio/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
@@ -503,6 +506,7 @@
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Adio/Info.plist;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
 				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
