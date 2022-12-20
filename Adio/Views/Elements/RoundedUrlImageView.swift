@@ -15,8 +15,6 @@ struct RoundedUrlImageView: View {
     private var shadowRadius: CGFloat
     private let url: URL
     
-    @EnvironmentObject var socketClient: SocketClient
-    
     // MARK: - View declaration.
     var body: some View {
         if let image {
@@ -34,7 +32,7 @@ struct RoundedUrlImageView: View {
                     guard image == nil else {
                         return
                     }
-                    image = await socketClient.fetchImage(from: url)
+                    image = await fetchImage(from: url)
                 }
         }
     }
@@ -51,15 +49,24 @@ struct RoundedUrlImageView: View {
         self.shadowRadius = shadowRadius
         self.url = url
     }
+    
+    /// Attempts to fetch an image from a remote source.
+    /// - Parameter url: Where should the image be fetched from?
+    /// - Returns: An option `UIImage`.
+    func fetchImage(from url: URL) async -> UIImage? {
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            return UIImage(data: data)
+        } catch {
+            print("Could not fetch image from remote server, error of: \(error.localizedDescription)")
+            return nil
+        }
+    }
 }
 
 struct RoundedUrlImageView_Previews: PreviewProvider {
-    // MARK: - Properties.
-    static let socketClient = SocketClient()
-    
     // MARK: - View declaration.
     static var previews: some View {
         RoundedUrlImageView(from: URL(string: "https://picsum.photos/250")!)
-            .environmentObject(socketClient)
     }
 }
