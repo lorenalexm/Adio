@@ -12,9 +12,9 @@ public class StreamPlayer: ObservableObject {
     // MARK: - Properties
     static let shared = StreamPlayer()
     
-    let player = AudioPlayer()
-    let audioSession = AudioSessionController.shared
-    var audioItem: DefaultAudioItem?
+    private let player = AudioPlayer()
+    private let audioSession = AudioSessionController.shared
+    private var audioItem: DefaultAudioItem?
     
     @Published var isPlaying = false
     

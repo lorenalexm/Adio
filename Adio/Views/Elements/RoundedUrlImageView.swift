@@ -9,11 +9,12 @@ import SwiftUI
 
 struct RoundedUrlImageView: View {
     // MARK: - Properties
-    @State private var image: UIImage?
     private var width: CGFloat
     private var height: CGFloat
     private var shadowRadius: CGFloat
     private let url: URL
+    
+    @State private var image: UIImage?
     
     // MARK: - View declaration.
     var body: some View {

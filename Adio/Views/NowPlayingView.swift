@@ -9,8 +9,8 @@ import SwiftUI
 
 struct NowPlayingView: View {
     // MARK: - Properties.
-    @EnvironmentObject var socketClient: SocketClient
-    @EnvironmentObject var player: StreamPlayer
+    @EnvironmentObject private var socketClient: SocketClient
+    @EnvironmentObject private var player: StreamPlayer
     
     // MARK: - View declaration.
     var body: some View {
